@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account registration details",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "The firebase unique authentication identifier"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of user"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Display name of user"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Registration audit timestamp"
+        }
+      },
+      "required": ["userId", "email", "createdAt"]
+    },
+    "Favorite": {
+      "title": "Favorite Property",
+      "description": "A bookmarked rental property",
+      "type": "object",
+      "properties": {
+        "propertyId": {
+          "type": "string",
+          "description": "The unique property identifier"
+        },
+        "addedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Bookmark timestamp"
+        }
+      },
+      "required": ["propertyId", "addedAt"]
+    },
+    "Visit": {
+      "title": "Property Visit Appointment",
+      "description": "A scheduled free land visit booking",
+      "type": "object",
+      "properties": {
+        "propertyId": {
+          "type": "string",
+          "description": "The target property identifier"
+        },
+        "visitorName": {
+          "type": "string",
+          "description": "Name of visitor"
+        },
+        "visitorPhone": {
+          "type": "string",
+          "description": "Phone number to dial"
+        },
+        "visitDate": {
+          "type": "string",
+          "description": "Scheduled date"
+        },
+        "visitTimeSlot": {
+          "type": "string",
+          "description": "Convenient time range"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["propertyId", "visitorName", "visitorPhone", "visitDate", "visitTimeSlot", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Top-level collection for user profiles"
+    },
+    "/users/{userId}/favorites/{propertyId}": {
+      "schema": "Favorite",
+      "description": "Subcollection of favorited properties per user"
+    },
+    "/users/{userId}/visits/{visitId}": {
+      "schema": "Visit",
+      "description": "Subcollection of property inspection bookings per user"
+    }
+  }
+}

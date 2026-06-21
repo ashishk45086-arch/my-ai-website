@@ -1,0 +1,6 @@
+{
+  "name": "PG in Phagwara",
+  "description": "Premium modern rental property platform for PGs, rooms, and houses in Phagwara and near Lovely Professional University (LPU).",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
