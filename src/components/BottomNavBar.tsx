@@ -20,7 +20,7 @@ export default function BottomNavBar({ activePage, onNavigate, savedCount }: Bot
       {/* Floating Pulse WhatsApp Button (Mobile only) */}
       <div className="fixed bottom-20 right-4 z-40 md:hidden animate-bounce transition-all duration-300">
         <a
-          href="https://wa.me/919876543210?text=Hello!%20I%20am%20looking%20for%20accommodation%20in%20Phagwara."
+          href="https://wa.me/919958016911?text=Hello!%20I%20am%20looking%20for%20accommodation%20in%20Phagwara."
           target="_blank"
           rel="noreferrer"
           className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-slate-950 shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 ring-4 ring-emerald-500/20"

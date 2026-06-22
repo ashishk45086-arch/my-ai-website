@@ -36,7 +36,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             {/* Visual Social handles */}
             <div className="flex items-center space-x-3.5 pt-2">
               <a 
-                href="https://wa.me/919876543210?text=Hi" 
+                href="https://wa.me/919958016911?text=Hi" 
                 target="_blank" 
                 rel="noreferrer"
                 className="h-9 w-9 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-[#25D366] flex items-center justify-center transition-colors"
@@ -138,20 +138,20 @@ export default function Footer({ onNavigate }: FooterProps) {
 
             <div className="flex items-center space-x-2.5">
               <Phone className="h-4 w-4 text-primary shrink-0" />
-              <a href="tel:+919876543210" className="hover:text-white transition-colors font-mono">
-                +91 98765 43210
+              <a href="tel:+919958016911" className="hover:text-white transition-colors font-mono">
+                +91 99580 16911
               </a>
             </div>
 
             <div className="flex items-center space-x-2.5">
               <MessageCircle className="h-4 w-4 text-emerald-500 shrink-0" />
               <a 
-                href="https://wa.me/919876543210?text=Hi" 
+                href="https://wa.me/919958016911?text=Hi" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="hover:text-white transition-colors font-mono"
               >
-                +91 98765 43210
+                +91 99580 16911
               </a>
             </div>
           </div>

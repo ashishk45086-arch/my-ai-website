@@ -197,8 +197,8 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <span className="font-semibold text-white block">Direct Call Helpdesk</span>
-                  <a href="tel:+919876543210" className="text-gray-400 font-mono mt-0.5 block hover:text-accent transition-colors">
-                    +91 98765 43210
+                  <a href="tel:+919958016911" className="text-gray-400 font-mono mt-0.5 block hover:text-accent transition-colors">
+                    +91 99580 16911
                   </a>
                 </div>
               </div>
@@ -211,12 +211,12 @@ export default function ContactForm() {
                 <div>
                   <span className="font-semibold text-white block">Official WhatsApp Chat</span>
                   <a 
-                    href="https://wa.me/919876543210?text=Hello" 
+                    href="https://wa.me/919958016911?text=Hello" 
                     target="_blank" 
                     rel="noreferrer" 
                     className="text-gray-400 font-mono mt-0.5 block hover:text-accent transition-colors"
                   >
-                    +91 98765 43210
+                    +91 99580 16911
                   </a>
                 </div>
               </div>

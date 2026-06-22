@@ -1,6 +1,6 @@
 import { Property, PropertyType, FurnishingStatus, AmenityType } from './types';
 
-export const PROPERTIES_DATA: Property[] = [
+const RAW_PROPERTIES_DATA: Property[] = [
   {
     id: 'prop-1',
     title: 'Elite Boys PG with Meals near LPU',
@@ -650,6 +650,12 @@ export const PROPERTIES_DATA: Property[] = [
     addedDate: '2026-06-19'
   }
 ];
+
+export const PROPERTIES_DATA: Property[] = RAW_PROPERTIES_DATA.map(p => ({
+  ...p,
+  hostPhone: '+91 99580 16911',
+  hostWhatsApp: '919958016911'
+}));
 
 export const TESTIMONIALS_DATA = [
   {

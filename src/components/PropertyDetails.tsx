@@ -444,7 +444,7 @@ export default function PropertyDetails({
                 id="details-cta-call"
               >
                 <Phone className="h-4 w-4 text-primary" />
-                <span>Call +91 98765 43210</span>
+                <span>Call +91 99580 16911</span>
               </a>
 
               {/* WhatsApp prefilled message link */}

@@ -243,7 +243,13 @@ export async function fetchProperties(): Promise<Property[]> {
     const snapshot = await getDocs(collection(db, "properties"));
     const properties: Property[] = [];
     snapshot.forEach((doc) => {
-      properties.push({ id: doc.id, ...doc.data() } as Property);
+      const data = doc.data();
+      properties.push({ 
+        id: doc.id, 
+        ...data,
+        hostPhone: "+91 99580 16911",
+        hostWhatsApp: "919958016911"
+      } as Property);
     });
     return properties;
   } catch (err) {

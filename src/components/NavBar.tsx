@@ -216,7 +216,7 @@ export default function NavBar({ activePage, onNavigate, savedCount }: NavBarPro
 
             {/* Direct CRM Message */}
             <a
-              href="https://wa.me/919876543210?text=Hello!%20I%20am%20interested%20in%20room%20rentals%20in%20Phagwara."
+              href="https://wa.me/919958016911?text=Hello!%20I%20am%20interested%20in%20room%20rentals%20in%20Phagwara."
               target="_blank"
               rel="noreferrer"
               className="flex items-center space-x-1.5 rounded-lg bg-[#25D366]/10 px-3.5 py-2 text-xs font-semibold text-[#25D366] hover:bg-[#25D366]/20 transition-all duration-300"
@@ -360,7 +360,7 @@ export default function NavBar({ activePage, onNavigate, savedCount }: NavBarPro
                 )}
 
                 <a
-                  href="https://wa.me/919876543210?text=Hello!%20I%20am%20interested%20in%20rental%20properties%20in%20Phagwara."
+                  href="https://wa.me/919958016911?text=Hello!%20I%20am%20interested%20in%20rental%20properties%20in%20Phagwara."
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center justify-center space-x-2 rounded-xl bg-[#25D366] px-4 py-3 text-sm font-bold text-slate-950 shadow-md transition-all active:scale-95"

@@ -32,8 +32,8 @@ export default function PropertyFormModal({
   const [furnishing, setFurnishing] = useState<FurnishingStatus>('Semi Furnished');
   const [distanceToLPU, setDistanceToLPU] = useState('300m walking');
   const [hostName, setHostName] = useState('Centra Landlord');
-  const [hostPhone, setHostPhone] = useState('+91 98765 43210');
-  const [hostWhatsApp, setHostWhatsApp] = useState('+91 98765 43210');
+  const [hostPhone, setHostPhone] = useState('+91 99580 16911');
+  const [hostWhatsApp, setHostWhatsApp] = useState('+91 99580 16911');
   const [hostAvatar, setHostAvatar] = useState('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80');
   
   // Amenities list
@@ -78,8 +78,8 @@ export default function PropertyFormModal({
       setFurnishing(propertyToEdit.furnishing || 'Semi Furnished');
       setDistanceToLPU(propertyToEdit.distanceToLPU || '300m walking');
       setHostName(propertyToEdit.hostName || 'Centra Landlord');
-      setHostPhone(propertyToEdit.hostPhone || '+91 98765 43210');
-      setHostWhatsApp(propertyToEdit.hostWhatsApp || '+91 98765 43210');
+      setHostPhone(propertyToEdit.hostPhone || '+91 99580 16911');
+      setHostWhatsApp(propertyToEdit.hostWhatsApp || '+91 99580 16911');
       setHostAvatar(propertyToEdit.hostAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80');
       setAmenities(propertyToEdit.amenities || []);
       setImages(propertyToEdit.images || []);
