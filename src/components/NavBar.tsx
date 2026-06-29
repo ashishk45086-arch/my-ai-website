@@ -13,8 +13,16 @@ import {
   LogOut, 
   LogIn, 
   Calendar,
-  Sparkles
+  Sparkles,
+  Palette
 } from 'lucide-react';
+
+const THEMES = [
+  { id: 'default' as const, label: 'Classic Blue', primary: 'bg-[#2563EB]', accent: 'bg-[#2DD4BF]', description: 'Cool technology slate' },
+  { id: 'emerald' as const, label: 'Emerald Gold', primary: 'bg-[#059669]', accent: 'bg-[#F59E0B]', description: 'Eco-friendly premium green' },
+  { id: 'sunset' as const, label: 'Sunset Rose', primary: 'bg-[#F43F5E]', accent: 'bg-[#38BDF8]', description: 'Warm energetic rose' },
+  { id: 'purple' as const, label: 'Royal Purple', primary: 'bg-[#8B5CF6]', accent: 'bg-[#EC4899]', description: 'Majestic elegant violet' }
+];
 import { motion, AnimatePresence } from 'motion/react';
 import { useAuth } from '../context/AuthContext';
 import AuthModal from './AuthModal';
@@ -30,14 +38,40 @@ export default function NavBar({ activePage, onNavigate, savedCount }: NavBarPro
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [themeDropdownOpen, setThemeDropdownOpen] = useState(false);
   
+  const [currentTheme, setCurrentTheme] = useState<'default' | 'emerald' | 'sunset' | 'purple'>(() => {
+    try {
+      const cached = localStorage.getItem('pg_theme');
+      return (cached as any) || 'default';
+    } catch (e) {
+      return 'default';
+    }
+  });
+
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const themeRef = useRef<HTMLDivElement>(null);
+
+  // Apply theme to html element
+  useEffect(() => {
+    if (currentTheme === 'default') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+    }
+    try {
+      localStorage.setItem('pg_theme', currentTheme);
+    } catch (e) {}
+  }, [currentTheme]);
 
   // Close dropdown on clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setUserDropdownOpen(false);
+      }
+      if (themeRef.current && !themeRef.current.contains(event.target as Node)) {
+        setThemeDropdownOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -131,6 +165,61 @@ export default function NavBar({ activePage, onNavigate, savedCount }: NavBarPro
 
           {/* Authentication & Contact CTAs wrapper */}
           <div className="hidden md:flex items-center space-x-4">
+
+            {/* Theme Toggle Palette Button */}
+            <div className="relative" ref={themeRef}>
+              <button
+                onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
+                className="flex items-center justify-center h-9 w-9 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:text-white transition-all focus:outline-none select-none cursor-pointer"
+                title="Change Color Theme"
+                id="theme-dropdown-trigger"
+              >
+                <Palette className="h-4 w-4" />
+              </button>
+
+              <AnimatePresence>
+                {themeDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    className="absolute right-0 mt-2.5 w-64 bg-slate-900 border border-white/10 rounded-2xl shadow-2xl p-2.5 z-50 text-left"
+                    id="theme-selector-panel"
+                  >
+                    <div className="px-2.5 py-2 border-b border-white/5 mb-1.5">
+                      <span className="text-xs font-bold text-white block">Select Color Theme</span>
+                      <span className="text-[10px] text-gray-500 block">Personalize your property portal</span>
+                    </div>
+
+                    <div className="space-y-1">
+                      {THEMES.map((t) => (
+                        <button
+                          key={t.id}
+                          onClick={() => {
+                            setCurrentTheme(t.id);
+                            setThemeDropdownOpen(false);
+                          }}
+                          className={`w-full flex items-center justify-between p-2 rounded-xl text-left transition-colors cursor-pointer ${
+                            currentTheme === t.id 
+                              ? 'bg-primary/15 border border-primary/20 text-white font-medium' 
+                              : 'border border-transparent text-gray-400 hover:text-white hover:bg-white/5'
+                          }`}
+                        >
+                          <div className="flex flex-col">
+                            <span className="text-xs font-semibold">{t.label}</span>
+                            <span className="text-[9px] text-gray-500 leading-tight">{t.description}</span>
+                          </div>
+                          <div className="flex items-center space-x-1.5 shrink-0 pl-3">
+                            <span className={`h-3 w-3 rounded-full ${t.primary} ring-2 ring-white/10`} />
+                            <span className={`h-3 w-3 rounded-full ${t.accent} ring-2 ring-white/10`} />
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             
             {/* User Account Controls */}
             {user ? (
@@ -310,6 +399,39 @@ export default function NavBar({ activePage, onNavigate, savedCount }: NavBarPro
                   </button>
                 </div>
               )}
+
+              {/* Mobile Theme Swatcher */}
+              <div className="flex flex-col space-y-2 text-left bg-white/5 border border-white/5 p-3 rounded-xl mb-1">
+                <div className="flex items-center space-x-1.5 text-gray-300">
+                  <Palette className="h-4 w-4 text-accent" />
+                  <span className="text-xs font-bold font-display">Website Color Theme</span>
+                </div>
+                <div className="grid grid-cols-4 gap-2 pt-1">
+                  {THEMES.map((t) => {
+                    const isSelected = currentTheme === t.id;
+                    return (
+                      <button
+                        key={t.id}
+                        onClick={() => setCurrentTheme(t.id)}
+                        className={`flex flex-col items-center p-2 rounded-lg border transition-all cursor-pointer ${
+                          isSelected 
+                            ? 'bg-primary/20 border-primary text-white font-semibold' 
+                            : 'bg-slate-950/40 border-white/5 text-gray-400 hover:text-white'
+                        }`}
+                        title={t.label}
+                      >
+                        <div className="flex items-center -space-x-1 mb-1.5">
+                          <span className={`h-3 w-3 rounded-full ${t.primary} ring-1 ring-white/20`} />
+                          <span className={`h-3 w-3 rounded-full ${t.accent} ring-1 ring-white/20`} />
+                        </div>
+                        <span className="text-[8px] truncate max-w-full leading-none font-medium">
+                          {t.label.split(' ')[0]}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
               <span className="font-mono text-xs tracking-wider text-gray-500 uppercase text-left">
                 Navigation Menu
