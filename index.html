@@ -6,6 +6,23 @@
     <title>My Google AI Studio App</title>
     <script>
       (function() {
+        // Safe window.fetch patch to prevent "only a getter" runtime errors
+        try {
+          let originalFetch = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get() {
+              return originalFetch;
+            },
+            set(newFetch) {
+              originalFetch = newFetch;
+            }
+          });
+        } catch (e) {
+          console.warn("Could not redefine window.fetch:", e);
+        }
+
         try {
           const cached = localStorage.getItem('pg_theme');
           if (cached && cached !== 'default') {
